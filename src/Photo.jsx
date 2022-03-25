@@ -40,7 +40,7 @@ export default function Photo({ photo }) {
           </CardBody>
         </Card>
       </Col>
-      <Modal isOpen={modal} toggle={toggle} className="bg-secondary">
+      <Modal isOpen={modal} toggle={toggle} className="bg-secondary" fullscreen>
         <ModalHeader toggle={toggle} />
         <ModalBody width="100%" className="modal-body">
           <img

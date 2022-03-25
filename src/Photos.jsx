@@ -14,10 +14,10 @@ import {
 import Photo from './Photo';
 
 export default function Photos() {
-  const [pages, setPages] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  const [pages, setPages] = useState([1, 2, 3, 4, 5, 6, 7, 8]);
   const [startingPageNumber, setStartingPageNumber] = useState(1);
-  const pageNumbersPerPage = 10;
-  const [endingPageNumber, setEndingPageNumber] = useState(10);
+  const pageNumbersPerPage = 8;
+  const [endingPageNumber, setEndingPageNumber] = useState(8);
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activePage, setActivePage] = useState(1);
@@ -36,7 +36,9 @@ export default function Photos() {
   const getPages = (first, last) => {
     const numbersArray = [];
     for (let i = first; i <= last; i += 1) {
-      numbersArray.push(i);
+      if (i <= 100) {
+        numbersArray.push(i);
+      }
     }
     setPages(numbersArray);
   };
@@ -77,9 +79,9 @@ export default function Photos() {
   return (
     <div className="p-2 container-fluid">
       <div>
-        <div className="d-flex sticky-top bg-dark text-white rounded mb-3 pl-5 pr-5">
-          <h1 className="p-2 flex-grow-1 ">Photo Gallery</h1>
-          <div className="p-2 flex-shrink-1">
+        <div className="d-lg-flex d-md-flex d-sm-flex sticky-top bg-dark text-white rounded mb-3">
+          <h1 className="p-2 flex-grow-1 text-center">Photo Gallery</h1>
+          <div className="p-2 flex-shrink-1 text-center">
             <Button
               className="rounded-circle m-2 h1 border border-white"
               color="success"
@@ -120,7 +122,7 @@ export default function Photos() {
             </Row>
           </CardGroup>
         )}
-        <Pagination className="pagination">
+        <Pagination className="pagination" size="sm">
           <PaginationItem>
             <PaginationLink
               previous
@@ -143,7 +145,7 @@ export default function Photos() {
             <PaginationLink
               next
               onClick={nextPages}
-              disabled={endingPageNumber === 100}
+              disabled={endingPageNumber >= 100}
             />
           </PaginationItem>
         </Pagination>
